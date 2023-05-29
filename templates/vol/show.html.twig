@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}vol{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center mt-4 mb-2">Affichage du vol</h2>
+
+    <table class="table table-responsive">
+        <tbody>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ vol.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero du vol</th>
+                <td>{{ vol.VolNum }}</td>
+            </tr>
+            <tr>
+                <th>Horaire de départ</th>
+                <td>{{ vol.Hdepart ? vol.Hdepart|date('d/m/Y H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ville de départ</th>
+                <td>{{ vol.VilleDepart }}</td>
+            </tr>
+            <tr>
+                <th>Horaire d'arrivée</th>
+                <td>{{ vol.Harrivee ? vol.Harrivee|date('d/m/Y H:i') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ville d'arrivée</th>
+                <td>{{ vol.VilleArrivee }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ vol.prix }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de places</th>
+                <td>{{ vol.nbPlaces }}</td>
+            </tr>
+            <tr>
+                <th>Réduction</th>
+                <td>{{ vol.reduction ? 'oui' : 'non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-evenly mt-3">
+        <a class="btn btn-success" href="{{ path('app_vol_index') }}">Retour</a>
+        <a class="btn btn-success" href="{{ path('app_vol_edit', {'id': vol.id}) }}">Editer</a>
+        {{ include('vol/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

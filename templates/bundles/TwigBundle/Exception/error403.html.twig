@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}no permission{% endblock %}
+
+{% block body %}
+    {% block menu %}
+        {% include "nav/navbar.html.twig" %}
+    {% endblock %}
+    <div class="container example-wrapper p-3">
+        <p class="fs-3"> Désolé ! Il semble que vous n'ayiez pas la permission !</p> 
+    </div>
+{% endblock %}

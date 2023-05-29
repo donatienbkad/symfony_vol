@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}vol index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center mt-5 mb-5">Admninistration des vols</h1>
+
+    <table class="table table-responsive mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero du vol</th>
+                <th>Horaire de depart</th>
+                <th>Ville de départ</th>
+                <th>Horaire d'arrivée</th>
+                <th>Ville d'arrivée</th>
+                <th>Prix($)</th>
+                <th>Nombre de Places</th>
+                <th>Réduction</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vol in vols %}
+            <tr>
+                <td>{{ vol.id }}</td>
+                <td>{{ vol.VolNum }}</td>
+                <td>{{ vol.Hdepart ? vol.Hdepart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vol.VilleDepart }}</td>
+                <td>{{ vol.Harrivee ? vol.Harrivee|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ vol.VilleArrivee }}</td>
+                <td>{{ vol.prix }}</td>
+                <td>{{ vol.nbPlaces }}</td>
+                <td>{{ vol.reduction ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_vol_show', {'id': vol.id}) }}" title="afficher"><img src= {{asset('img/show.png')}}></a>
+                    <a href="{{ path('app_vol_edit', {'id': vol.id}) }}" title="éditer"><img src= {{asset('img/edit.png')}}></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">Pas d'enregistrements trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+        <div class="d-flex justify-content-evenly">
+            <a class="btn btn-success" href="{{ path('home') }}">Retour</a>
+            
+            <a  class="btn btn-success" href="{{ path('app_vol_new') }}">Créer</a>
+        </div>
+
+</div>
+{% endblock %}

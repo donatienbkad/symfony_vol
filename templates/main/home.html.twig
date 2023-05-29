@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des vols{% endblock %}
+
+{% block body %}
+    {% block menu %}
+        {% include "nav/navbar.html.twig" %}
+    {% endblock %}
+
+        <div class="container example-wrapper p-3">
+            <h2 class="text-center mt-4 mb-4">Bonjour, voici la liste des vols ✅</h2>
+
+            <table class="table table-responsive mt-5">
+                <thead>
+                    <tr>
+                        <!--th>Id</th-->
+                        <th>Numero du vol</th>
+                        <th>Horaire de depart</th>
+                        <th>Ville de départ</th>
+                        <th>Horaire d'arrivée</th>
+                        <th>Ville d'arrivée</th>
+                        <th>Prix($)</th>
+                        <th>Nombre de Places</th>
+                        <th>Réduction</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for vol in vols %}
+                    <tr>
+                        <!--td>{{ vol.id }}</td-->
+                        <td>{{ vol.VolNum }}</td>
+                        <td>{{ vol.Hdepart ? vol.Hdepart|date('d-m-Y H:i') : '' }}</td>
+                        <td>{{ vol.VilleDepart }}</td>
+                        <td>{{ vol.Harrivee ? vol.Harrivee|date('d-m-Y H:i') : '' }}</td>
+                        <td>{{ vol.VilleArrivee }}</td>
+                        <td>{{ vol.prix }}</td>
+                        <td>{{ vol.nbPlaces }}</td>
+                        <td>{{ vol.reduction ? 'oui' : 'non' }}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{ path('app_vol_index', {'id': vol.id}) }}">Administrer vol</a>
+                        </td>
+                        
+                {% else %}    
+                    <tr>
+                        <td colspan="10">Pas d'enregistrement</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+{% endblock %}

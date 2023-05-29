@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nouveau vol{% endblock %}
+
+{% block body %}
+<div class="container example-wrapper p-3">
+    <h2 class="text-center mb-4">Créer un nouveau vol</h2>
+
+        {{ include('vol/_form.html.twig') }}
+
+    <a class="btn flex-end btn-success mt-2" href="{{ path('app_vol_index') }}">Retour</a>
+</div>   
+{% endblock %}
